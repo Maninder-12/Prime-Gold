@@ -339,13 +339,14 @@ footer{
 }
 .mobile-panel .close-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
 
-/* ===== What We Buy Slider ===== */
+/* ===== What We Buy Slider (UPDATED FOR 3 FULL CARDS) ===== */
 .wwb { padding: 54px 0; }
 .wwb-controls { display:flex; gap:10px; align-items:center; }
-.wwb-slider{ margin-top: 10px; }
+.wwb-slider{ margin-top: 16px; }
 
 .wwb-viewport{
   overflow:hidden;
+  padding: 14px 10px;          /* keeps cards from being cut off */
   border-radius: var(--radius2);
   border: 1px solid var(--line);
   background: rgba(255,255,255,.02);
@@ -353,14 +354,13 @@ footer{
 
 .wwb-track{
   display:flex;
-  gap: 14px;
-  padding: 14px;
+  gap: 16px;                   /* consistent gap used in width math */
   will-change: transform;
-  transition: transform .35s ease;
+  transition: transform .45s ease;
 }
 
 .wwb-card{
-  flex: 0 0 calc((100% - 28px) / 3);
+  flex: 0 0 calc((100% - 32px) / 3);  /* exactly 3 cards: 2 gaps × 16px */
   border: 1px solid var(--line);
   border-radius: var(--radius2);
   background: rgba(255,255,255,.035);
@@ -432,9 +432,13 @@ footer{
   border-color: rgba(200,171,84,.75);
   background: rgba(200,171,84,.45);
 }
+
+/* Tablet: 2 cards */
 @media (max-width: 900px){
-  .wwb-card{ flex-basis: calc((100% - 14px) / 2); }
+  .wwb-card{ flex: 0 0 calc((100% - 16px) / 2); }
 }
+
+/* Mobile: 1 card */
 @media (max-width: 520px){
-  .wwb-card{ flex-basis: 100%; }
+  .wwb-card{ flex: 0 0 100%; }
 }

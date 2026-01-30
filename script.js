@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   openBtn?.addEventListener("click", openMenu);
   closeBtn?.addEventListener("click", closeMenu);
-  menu?.addEventListener("click", (e) => { if (e.target === menu) closeMenu(); });
+  menu?.addEventListener("click", (e) => { if(e.target === menu) closeMenu(); });
   document.querySelectorAll(".mnav").forEach(a => a.addEventListener("click", closeMenu));
 
-  // What We Buy Slider
+  // ===== What We Buy Slider (AUTO + LOOP, MOVES BY 2) =====
   const track = document.getElementById("wwbTrack");
   const prevBtn = document.getElementById("wwbPrev");
   const nextBtn = document.getElementById("wwbNext");
@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
 
   const cards = Array.from(track.querySelectorAll(".wwb-card"));
-  let page = 0;
+  const AUTO_DELAY = 4500; // every few seconds
+  let index = 0;
+  let autoTimer;
 
   function cardsPerView() {
     const w = window.innerWidth;
@@ -44,59 +46,118 @@ document.addEventListener("DOMContentLoaded", () => {
     return 3;
   }
 
-  function pageCount() {
-    return Math.max(1, Math.ceil(cards.length / cardsPerView()));
+  // Move 2 at a time on desktop/tablet, 1 at a time on mobile
+  function stepSize() {
+    return (cardsPerView() === 1) ? 1 : 2;
+  }
+
+  // Last valid starting index so we never leave blank space
+  function maxIndex() {
+    return Math.max(0, cards.length - cardsPerView());
+  }
+
+  // Your CSS uses 16px gap; compute real step size in pixels so 3 cards stay perfectly aligned
+  function cardStepPx() {
+    if (!cards.length) return 0;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    return cards[0].offsetWidth + gap;
   }
 
   function buildDots() {
     dotsWrap.innerHTML = "";
-    const count = pageCount();
+    const step = stepSize();
+    const pages = Math.max(1, Math.ceil(cards.length / step));
 
-    for (let i = 0; i < count; i++) {
-      const b = document.createElement("button");
-      b.className = "wwb-dot";
-      b.type = "button";
-      b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-      b.addEventListener("click", () => {
-        page = i;
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement("button");
+      dot.className = "wwb-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      dot.addEventListener("click", () => {
+        index = Math.min(i * step, maxIndex());
         update();
+        resetAuto();
       });
-      dotsWrap.appendChild(b);
+      dotsWrap.appendChild(dot);
     }
   }
 
   function updateDots() {
     const dots = Array.from(dotsWrap.querySelectorAll(".wwb-dot"));
-    dots.forEach((d, i) => d.setAttribute("aria-current", i === page ? "true" : "false"));
+    const step = stepSize();
+    const current = Math.floor(index / step);
+    dots.forEach((d, i) => d.setAttribute("aria-current", i === current ? "true" : "false"));
   }
 
   function updateButtons() {
-    const count = pageCount();
-    prevBtn.disabled = page <= 0;
-    nextBtn.disabled = page >= count - 1;
-    prevBtn.style.opacity = prevBtn.disabled ? "0.55" : "1";
-    nextBtn.style.opacity = nextBtn.disabled ? "0.55" : "1";
+    // Since we're looping, buttons are always enabled
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+    prevBtn.style.opacity = "1";
+    nextBtn.style.opacity = "1";
   }
 
   function update() {
-    const count = pageCount();
-    page = Math.min(Math.max(page, 0), count - 1);
-    const shiftPct = page * 100;
-    track.style.transform = `translateX(-${shiftPct}%)`;
+    const step = stepSize();
+    const px = cardStepPx();
+
+    // Clamp index to valid range
+    index = Math.min(Math.max(index, 0), maxIndex());
+
+    track.style.transform = `translateX(-${index * px}px)`;
     updateDots();
     updateButtons();
   }
 
-  function normalize() {
-    const count = pageCount();
-    track.style.width = `${count * 100}%`;
-    buildDots();
+  function moveNext() {
+    const step = stepSize();
+    index += step;
+
+    // Loop back to start once we've reached the end
+    if (index > maxIndex()) index = 0;
+
     update();
   }
 
-  prevBtn.addEventListener("click", () => { page--; update(); });
-  nextBtn.addEventListener("click", () => { page++; update(); });
-  window.addEventListener("resize", normalize);
+  function movePrev() {
+    const step = stepSize();
+    index -= step;
 
-  normalize();
+    // Loop to the end if we go before start
+    if (index < 0) index = maxIndex();
+
+    update();
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(moveNext, AUTO_DELAY);
+  }
+
+  function resetAuto() {
+    startAuto();
+  }
+
+  prevBtn.addEventListener("click", () => {
+    movePrev();
+    resetAuto();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    moveNext();
+    resetAuto();
+  });
+
+  window.addEventListener("resize", () => {
+    // On resize, rebuild dots because step size / per view can change
+    index = 0;
+    buildDots();
+    update();
+    startAuto();
+  });
+
+  // Init
+  buildDots();
+  update();
+  startAuto();
 });
