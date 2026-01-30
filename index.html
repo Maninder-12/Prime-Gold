@@ -6,9 +6,13 @@
   <title>Prime Gold | Sell Gold for Top Dollar</title>
   <meta name="description" content="Prime Gold pays top dollar for gold, silver, coins, diamonds, and luxury watches. Free evaluation, instant payout, no pressure." />
   <meta name="theme-color" content="#ffffff" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- CSS moved out -->
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Simple LocalBusiness schema (edit details) -->
   <script type="application/ld+json">
@@ -30,368 +34,6 @@
     "openingHours": "Mo-Sa 10:00-18:00"
   }
   </script>
-
-  <style>
-    /* ========= Global Theme (White / Black / Gold) ========= */
-    :root{
-      --bg: #ffffff;
-      --ink: #121218;         /* near-black */
-      --muted-ink: #2a2a33;
-      --gold: #c8ab54;        /* warm gold */
-      --panel: #2c2b39;       /* dark purple/charcoal like screenshot */
-      --panel-2: #343348;
-      --line: rgba(18,18,24,.18);
-      --soft: rgba(18,18,24,.08);
-      --radius: 18px;
-      --radius2: 24px;
-      --max: 1120px;
-      --shadow: 0 18px 45px rgba(0,0,0,.12);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height:1.55;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
-
-    /* ========= Top Bar (now light) ========= */
-    .topbar{
-      background:#fff;
-      border-bottom:1px solid var(--soft);
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:10px 0;
-      font-size:13px;
-    }
-    .topbar-left{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border:1px solid var(--soft);
-      border-radius:999px;
-      background:#fff;
-      white-space:nowrap;
-      color: var(--muted-ink);
-      font-weight:600;
-    }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--gold)}
-    .topbar-actions{display:flex; align-items:center; gap:10px}
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--soft);
-      background:#fff;
-      color:var(--ink);
-      font-weight:700;
-      transition:.2s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(18,18,24,.03)}
-    .btn-gold{
-      border-color: rgba(200,171,84,.55);
-      color: var(--ink);
-      background: linear-gradient(135deg, rgba(200,171,84,.22), rgba(200,171,84,.06));
-      box-shadow: 0 10px 25px rgba(200,171,84,.14);
-    }
-
-    /* ========= Header / Nav ========= */
-    header{padding:18px 0 0}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:14px 0;
-    }
-    .brand{display:flex; align-items:center; gap:10px}
-    .logo{
-      width:40px; height:40px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(200,171,84,.95), rgba(160,125,44,.95));
-      box-shadow: 0 18px 45px rgba(200,171,84,.18);
-      position:relative;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:10px;
-      border-radius:10px;
-      border:2px solid rgba(0,0,0,.22);
-    }
-    .brand-name{font-weight:900; letter-spacing:.2px}
-    .brand-sub{font-size:12px; color:var(--muted-ink); margin-top:2px}
-    .navlinks{display:flex; gap:14px; align-items:center}
-    .navlinks a{
-      font-weight:800; font-size:14px; color: var(--muted-ink);
-      padding:8px 10px; border-radius:999px;
-      border:1px solid transparent;
-    }
-    .navlinks a:hover{border-color:var(--soft); background:rgba(18,18,24,.03)}
-    .hamburger{display:none}
-    @media (max-width: 900px){
-      .navlinks{display:none}
-      .hamburger{display:inline-flex}
-    }
-
-    /* ========= HERO (match screenshot) ========= */
-    .hero{
-      padding: 28px 0 44px;
-    }
-    .hero-screenshot{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 26px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .hero-screenshot{ grid-template-columns: 1fr; }
-    }
-
-    .hero-left{
-      padding-top: 6px;
-    }
-
-    .hero-title{
-      display:flex;
-      align-items: baseline;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin: 0 0 10px;
-    }
-    .hero-title .prime{
-      font-weight: 900;
-      letter-spacing: -2px;
-      font-size: clamp(64px, 8vw, 120px);
-      line-height: .95;
-      margin: 0;
-      color: var(--ink);
-      text-transform: uppercase;
-    }
-    .hero-title .gold{
-      font-weight: 900;
-      letter-spacing: -2px;
-      font-size: clamp(64px, 8vw, 120px);
-      line-height: .95;
-      margin: 0;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .hero-subline{
-      font-weight: 900;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      font-size: clamp(18px, 2.1vw, 26px);
-      margin: 6px 0 8px;
-      color: var(--ink);
-    }
-
-    .hero-guarantee{
-      font-family: Georgia, "Times New Roman", serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: clamp(16px, 1.5vw, 22px);
-      margin: 10px 0 26px;
-      color: var(--gold);
-    }
-
-    .call-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: min(520px, 100%);
-      padding: 14px 18px;
-      border: 1.5px solid rgba(18,18,24,.35);
-      color: var(--ink);
-      background: transparent;
-      border-radius: 2px; /* squared like screenshot */
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: .15s ease;
-    }
-    .call-btn:hover{
-      background: rgba(18,18,24,.04);
-      transform: translateY(-1px);
-    }
-
-    .hero-right{
-      border-radius: 10px;
-      background: var(--panel);
-      color: #fff;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0,0,0,.14);
-    }
-    .hero-right-top{
-      display:flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px 18px 10px;
-    }
-    .hero-right-top .city{
-      font-family: Georgia, "Times New Roman", serif;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 700;
-      font-size: 30px;
-      color: var(--gold);
-    }
-    .hero-right-top .hours{
-      text-align: right;
-      font-family: Georgia, "Times New Roman", serif;
-      color: rgba(255,255,255,.86);
-      font-size: 14px;
-      line-height: 1.3;
-    }
-    .hero-map{
-      padding: 0 18px 18px;
-    }
-    .map-embed{
-      width: 100%;
-      height: 250px;
-      border: 0;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    /* ========= Sections (converted to white theme) ========= */
-    section{padding:54px 0}
-    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:18px}
-    .section-title{margin:0; font-size:28px; letter-spacing:-.4px}
-    .section-desc{margin:0; color:var(--muted-ink); max-width:70ch}
-
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
-    @media (max-width: 900px){
-      .grid-3{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-    }
-
-    .card{
-      background: #fff;
-      border:1px solid var(--soft);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.04);
-    }
-    .card h3{margin:0 0 6px; font-size:16px}
-    .card p{margin:0; color: var(--muted-ink)}
-
-    .icon{
-      width:42px; height:42px; border-radius:14px;
-      display:flex; align-items:center; justify-content:center;
-      border:1px solid rgba(200,171,84,.45);
-      background: rgba(200,171,84,.10);
-      margin-bottom:10px;
-      color: var(--ink);
-      font-weight: 900;
-    }
-
-    .tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .tag{
-      border:1px solid var(--soft);
-      background:#fff;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:12px;
-      color: var(--muted-ink);
-      font-weight: 700;
-    }
-
-    .stars{letter-spacing:1px; color:var(--gold); font-weight:900}
-    .quote{font-size:13px; color: var(--muted-ink)}
-    .who{margin-top:10px; font-size:12px; color: var(--muted-ink)}
-
-    .banner{
-      background: linear-gradient(135deg, rgba(200,171,84,.22), rgba(200,171,84,.06));
-      border:1px solid rgba(200,171,84,.35);
-      border-radius: var(--radius2);
-      padding:22px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      box-shadow: 0 18px 45px rgba(0,0,0,.06);
-    }
-    @media (max-width:900px){ .banner{flex-direction:column; align-items:flex-start} }
-    .banner h3{margin:0 0 6px}
-    .banner p{margin:0; color: var(--muted-ink)}
-
-    details{
-      border:1px solid var(--soft);
-      border-radius:14px;
-      padding:14px 14px;
-      background:#fff;
-    }
-    summary{cursor:pointer; font-weight:900; list-style:none}
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color: var(--muted-ink)}
-    .faq{display:grid; gap:10px}
-
-    footer{
-      padding:34px 0 44px;
-      border-top:1px solid var(--soft);
-      background: #fff;
-    }
-    .footer-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width:900px){ .footer-grid{grid-template-columns:1fr} }
-    .muted{color:var(--muted-ink)}
-
-    .footer-links{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .footer-links a{
-      border:1px solid var(--soft);
-      background:#fff;
-      padding:8px 10px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:13px;
-      color: var(--muted-ink);
-    }
-
-    /* Mobile menu */
-    .mobile-menu{
-      display:none;
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-      z-index:100;
-    }
-    .mobile-panel{
-      position:absolute; right:12px; top:12px; left:12px;
-      background: #fff;
-      border:1px solid var(--soft);
-      border-radius: var(--radius2);
-      padding:14px;
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
-      color: var(--ink);
-    }
-    .mobile-panel a{
-      display:block;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--soft);
-      background: #fff;
-      margin-top:10px;
-      font-weight:900;
-      color: var(--ink);
-    }
-    .mobile-panel .close-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
-  </style>
 </head>
 
 <body>
@@ -429,7 +71,7 @@
 
         <nav class="navlinks" aria-label="Primary">
           <a href="#how">How It Works</a>
-          <a href="#buy">What We Buy</a>
+          <a href="#what-we-buy-slider">What We Buy</a>
           <a href="#reviews">Reviews</a>
           <a href="#faq">FAQ</a>
           <a class="btn btn-gold" href="#quote">Free Quote</a>
@@ -477,7 +119,6 @@
           </div>
 
           <div class="hero-map">
-            <!-- Replace src with your exact Google Maps embed link for your business -->
             <iframe
               class="map-embed"
               loading="lazy"
@@ -521,52 +162,99 @@
     </div>
   </section>
 
-  <!-- What We Buy -->
-  <section id="buy">
+  <!-- What We Buy Slider -->
+  <section id="what-we-buy-slider" class="wwb">
     <div class="container">
       <div class="section-head">
         <div>
-          <h2 class="section-title">What we buy</h2>
-          <p class="section-desc">We purchase a wide range of valuables and pay competitive prices.</p>
+          <h2 class="section-title">What We Buy</h2>
+          <p class="section-desc">Browse what Prime Gold purchases—tap “Read More” to learn details.</p>
+        </div>
+
+        <div class="wwb-controls">
+          <button class="btn" type="button" id="wwbPrev" aria-label="Previous">←</button>
+          <button class="btn btn-gold" type="button" id="wwbNext" aria-label="Next">→</button>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Gold (all karats)</h3>
-          <p>From everyday jewelry to high-karat pieces—yes, even broken or mismatched items.</p>
-          <div class="tags">
-            <span class="tag">9K</span><span class="tag">10K</span><span class="tag">14K</span><span class="tag">18K</span>
-            <span class="tag">21K</span><span class="tag">22K</span><span class="tag">24K</span>
-          </div>
-          <div class="tags" style="margin-top:10px">
-            <span class="tag">Chains</span><span class="tag">Rings</span><span class="tag">Bracelets</span><span class="tag">Earrings</span>
-            <span class="tag">Dental Gold</span><span class="tag">Gold Coins</span><span class="tag">Bullion</span>
+      <div class="wwb-slider" aria-label="What we buy image slider">
+        <div class="wwb-viewport">
+          <div class="wwb-track" id="wwbTrack">
+
+            <article class="wwb-card">
+              <div class="wwb-media">
+                <img src="assets/gold.jpg" alt="Gold jewelry and bullion" loading="lazy">
+              </div>
+              <div class="wwb-body">
+                <h3 class="wwb-title">Gold</h3>
+                <p class="wwb-text">
+                  Are you thinking… I want to sell my gold jewelry, broken pieces, or bullion, but I’m not sure what it’s worth?
+                  Prime Gold offers fast, transparent evaluations and instant payouts.
+                </p>
+                <a class="wwb-link" href="sell-gold.html">Read More</a>
+              </div>
+            </article>
+
+            <article class="wwb-card">
+              <div class="wwb-media">
+                <img src="assets/diamonds.jpg" alt="Diamond ring and loose diamonds" loading="lazy">
+              </div>
+              <div class="wwb-body">
+                <h3 class="wwb-title">Diamonds</h3>
+                <p class="wwb-text">
+                  Are you thinking… I want to sell a diamond ring or loose stones, but I don’t know what makes a fair offer?
+                  Prime Gold reviews cut, clarity, and market demand to make a competitive offer.
+                </p>
+                <a class="wwb-link" href="sell-diamonds.html">Read More</a>
+              </div>
+            </article>
+
+            <article class="wwb-card">
+              <div class="wwb-media">
+                <img src="assets/coins.jpg" alt="Rare coins and bullion coins" loading="lazy">
+              </div>
+              <div class="wwb-body">
+                <h3 class="wwb-title">Coins</h3>
+                <p class="wwb-text">
+                  Are you thinking… I want to sell my rare coins, but unsure where to go?
+                  Prime Gold works with families in our community and coin collectors who want to sell silver and gold coins.
+                </p>
+                <a class="wwb-link" href="sell-coins.html">Read More</a>
+              </div>
+            </article>
+
+            <article class="wwb-card">
+              <div class="wwb-media">
+                <img src="assets/watches.jpg" alt="Luxury watches" loading="lazy">
+              </div>
+              <div class="wwb-body">
+                <h3 class="wwb-title">Watches</h3>
+                <p class="wwb-text">
+                  Are you thinking… I want to sell my watch, but I’m not sure what details buyers care about?
+                  Prime Gold evaluates brand, condition, and completeness (box/papers) to price it correctly.
+                </p>
+                <a class="wwb-link" href="sell-watches.html">Read More</a>
+              </div>
+            </article>
+
+            <article class="wwb-card">
+              <div class="wwb-media">
+                <img src="assets/silver.jpg" alt="Silver jewelry and bars" loading="lazy">
+              </div>
+              <div class="wwb-body">
+                <h3 class="wwb-title">Silver</h3>
+                <p class="wwb-text">
+                  Are you thinking… I want to sell sterling silver, flatware, or silver bars, but I’m not sure how it’s priced?
+                  Prime Gold makes it simple with a quick, clear evaluation.
+                </p>
+                <a class="wwb-link" href="sell-silver.html">Read More</a>
+              </div>
+            </article>
+
           </div>
         </div>
 
-        <div class="card">
-          <h3>Silver, coins, diamonds & watches</h3>
-          <p>We also buy investment pieces and luxury items with strong resale demand.</p>
-          <div class="tags">
-            <span class="tag">Silver Jewelry</span><span class="tag">Sterling</span><span class="tag">Silver Bars</span>
-            <span class="tag">Bullion Coins</span><span class="tag">Diamond Jewelry</span><span class="tag">Luxury Watches</span>
-            <span class="tag">Estate Jewelry</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="height:18px"></div>
-
-      <div class="banner">
-        <div>
-          <h3>Want a quick estimate?</h3>
-          <p>Text us photos for a fast quote, then stop by for a final in-person evaluation.</p>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-gold" href="sms:+15163988892">Text Photos</a>
-          <a class="btn" href="tel:+15163988892">Call Now</a>
-        </div>
+        <div class="wwb-dots" id="wwbDots" aria-label="Slider pagination"></div>
       </div>
     </div>
   </section>
@@ -650,13 +338,13 @@
 
           <div class="footer-links" aria-label="Footer links">
             <a href="#how">How It Works</a>
-            <a href="#buy">What We Buy</a>
+            <a href="#what-we-buy-slider">What We Buy</a>
             <a href="#reviews">Reviews</a>
             <a href="#faq">FAQ</a>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" id="quote">
           <h3 style="margin-top:0">Contact</h3>
           <p class="muted" style="margin:0 0 10px">
             <strong>Phone:</strong> 516-398-8892<br>
@@ -683,36 +371,14 @@
         <button class="btn" id="closeMenu">Close</button>
       </div>
       <a href="#how" class="mnav">How It Works</a>
-      <a href="#buy" class="mnav">What We Buy</a>
+      <a href="#what-we-buy-slider" class="mnav">What We Buy</a>
       <a href="#reviews" class="mnav">Reviews</a>
       <a href="#faq" class="mnav">FAQ</a>
       <a href="tel:+15163988892" class="mnav">Call Now</a>
     </div>
   </div>
 
-  <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Basic mobile menu
-    const openBtn = document.getElementById("openMenu");
-    const closeBtn = document.getElementById("closeMenu");
-    const menu = document.getElementById("mobileMenu");
-
-    function openMenu(){
-      menu.style.display = "block";
-      menu.setAttribute("aria-hidden","false");
-      document.body.style.overflow = "hidden";
-    }
-    function closeMenu(){
-      menu.style.display = "none";
-      menu.setAttribute("aria-hidden","true");
-      document.body.style.overflow = "";
-    }
-    openBtn?.addEventListener("click", openMenu);
-    closeBtn?.addEventListener("click", closeMenu);
-    menu?.addEventListener("click", (e)=>{ if(e.target === menu) closeMenu(); });
-    document.querySelectorAll(".mnav").forEach(a => a.addEventListener("click", closeMenu));
-  </script>
+  <!-- JS moved out -->
+  <script src="script.js" defer></script>
 </body>
 </html>
