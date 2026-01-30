@@ -1,95 +1,801 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Prime Gold | Sell Gold for Cash</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prime Gold | Sell Gold for Top Dollar</title>
+  <meta name="description" content="Prime Gold pays top dollar for gold, silver, coins, diamonds, and luxury watches. Free evaluation, instant payout, no pressure." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Simple LocalBusiness schema (edit details) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Prime Gold",
+    "description": "We buy gold, silver, coins, diamonds, and luxury watches. Free evaluation. Instant payout.",
+    "telephone": "+1-555-555-5555",
+    "email": "info@primegold.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main St",
+      "addressLocality": "Your City",
+      "addressRegion": "NY",
+      "postalCode": "10001",
+      "addressCountry": "US"
+    },
+    "openingHours": "Mo-Sa 10:00-18:00"
+  }
+  </script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b0c;
-      color: #f4f4f5;
+    :root{
+      --bg:#0b0b0c;
+      --panel:#111114;
+      --panel2:#15151a;
+      --text:#f4f4f5;
+      --muted:#b6b6c2;
+      --line:rgba(255,255,255,.10);
+      --gold:#d9b55a;
+      --gold2:#b58a2a;
+      --ok:#5eead4;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 24px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(217,181,90,.16), transparent 60%),
+                  radial-gradient(900px 500px at 80% 15%, rgba(217,181,90,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar */
+    .topbar{
+      background:rgba(0,0,0,.55);
+      border-bottom:1px solid var(--line);
+      backdrop-filter: blur(10px);
+      position:sticky;
+      top:0; z-index:50;
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:10px 0;
+      font-size:13px;
+    }
+    .topbar-left{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--gold)}
+    .topbar-actions{display:flex; align-items:center; gap:10px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:600;
+      transition:.2s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.06)}
+    .btn-gold{
+      border-color:rgba(217,181,90,.55);
+      background:linear-gradient(135deg, rgba(217,181,90,.22), rgba(181,138,42,.10));
+      box-shadow: 0 10px 25px rgba(217,181,90,.12);
     }
 
-    header {
-      background: #111114;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #222;
+    /* Header / Nav */
+    header{padding:18px 0 0}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(217,181,90,.95), rgba(181,138,42,.95));
+      box-shadow: 0 18px 45px rgba(217,181,90,.18);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:10px;
+      border-radius:10px;
+      border:2px solid rgba(0,0,0,.35);
+    }
+    .brand-name{font-weight:800; letter-spacing:.2px}
+    .brand-sub{font-size:12px; color:var(--muted); margin-top:2px}
+    .navlinks{display:flex; gap:14px; align-items:center}
+    .navlinks a{
+      font-weight:600; font-size:14px; color:rgba(244,244,245,.88);
+      padding:8px 10px; border-radius:999px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{border-color:var(--line); background:rgba(255,255,255,.03)}
+    .hamburger{display:none}
+    @media (max-width: 900px){
+      .navlinks{display:none}
+      .hamburger{display:inline-flex}
     }
 
-    h1 {
-      margin: 0;
-      color: #d9b55a;
-      font-size: 36px;
+    /* Hero */
+    .hero{
+      padding:18px 0 56px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:26px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 300px at 25% 0%, rgba(217,181,90,.22), transparent 55%);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(217,181,90,.35);
+      background: rgba(217,181,90,.08);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.25px;
+      text-transform:uppercase;
+    }
+    h1{
+      font-size:44px;
+      line-height:1.05;
+      margin:14px 0 12px;
+      letter-spacing:-.8px;
+    }
+    @media (max-width: 520px){ h1{font-size:36px} }
+    .lead{color:rgba(244,244,245,.86); font-size:16px; max-width:62ch}
+    .bullets{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:18px 0 0}
+    @media (max-width: 520px){ .bullets{grid-template-columns:1fr} }
+    .bullet{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(0,0,0,.18);
+    }
+    .check{
+      width:18px; height:18px; border-radius:999px;
+      background: rgba(94,234,212,.18);
+      border:1px solid rgba(94,234,212,.40);
+      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 auto; margin-top:2px;
+    }
+    .check svg{width:12px; height:12px; fill:var(--ok)}
+    .hero-cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .btn-lg{padding:12px 16px; font-size:15px}
+
+    /* Form card */
+    .form-card{
+      background: linear-gradient(180deg, rgba(21,21,26,.92), rgba(17,17,20,.92));
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    .form-title{font-size:18px; font-weight:800; margin:0 0 8px}
+    .form-sub{font-size:13px; color:var(--muted); margin:0 0 16px}
+    form{display:grid; gap:10px}
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width:520px){ .row2{grid-template-columns:1fr} }
+    label{font-size:12px; color:rgba(244,244,245,.78); font-weight:600}
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color:var(--text);
+      outline:none;
+      transition:.15s ease;
+      font: inherit;
+    }
+    textarea{min-height:92px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(217,181,90,.55);
+      box-shadow: 0 0 0 4px rgba(217,181,90,.14);
+    }
+    .fineprint{font-size:12px; color:var(--muted); margin-top:6px}
+    .form-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    .btn-block{flex:1}
+    .mini{
+      font-size:12px; color:rgba(244,244,245,.80);
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;
+    }
+    .mini span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
     }
 
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      text-align: center;
+    /* Sections */
+    section{padding:54px 0}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:18px}
+    .section-title{margin:0; font-size:28px; letter-spacing:-.4px}
+    .section-desc{margin:0; color:var(--muted); max-width:70ch}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+    @media (max-width: 900px){
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+    .card{
+      background: rgba(255,255,255,.035);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .card h3{margin:0 0 6px; font-size:16px}
+    .card p{margin:0; color:rgba(244,244,245,.80)}
+    .icon{
+      width:42px; height:42px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(217,181,90,.35);
+      background: rgba(217,181,90,.08);
+      margin-bottom:10px;
     }
 
-    p {
-      font-size: 18px;
-      opacity: 0.85;
-      line-height: 1.6;
+    /* What we buy */
+    .tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .tag{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      color:rgba(244,244,245,.84);
     }
 
-    .cta {
-      margin-top: 30px;
+    /* Reviews */
+    .stars{letter-spacing:1px; color:var(--gold); font-weight:900}
+    .quote{font-size:13px; color:rgba(244,244,245,.86)}
+    .who{margin-top:10px; font-size:12px; color:var(--muted)}
+
+    /* CTA banner */
+    .banner{
+      background: linear-gradient(135deg, rgba(217,181,90,.20), rgba(17,17,20,.92));
+      border:1px solid rgba(217,181,90,.30);
+      border-radius: var(--radius2);
+      padding:22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width:900px){ .banner{flex-direction:column; align-items:flex-start} }
+    .banner h3{margin:0 0 6px}
+    .banner p{margin:0; color:rgba(244,244,245,.82)}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px 14px;
+      background: rgba(255,255,255,.03);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:rgba(244,244,245,.82)}
+    .faq{display:grid; gap:10px}
+
+    /* Footer */
+    footer{
+      padding:34px 0 44px;
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width:900px){ .footer-grid{grid-template-columns:1fr} }
+    .muted{color:var(--muted)}
+    .footer-links{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .footer-links a{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:8px 10px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
     }
 
-    a.button {
-      display: inline-block;
-      padding: 14px 24px;
-      background: #d9b55a;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      margin: 10px;
+    /* Mobile menu */
+    .mobile-menu{
+      display:none;
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      z-index:100;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      opacity: 0.6;
-      border-top: 1px solid #222;
+    .mobile-panel{
+      position:absolute; right:12px; top:12px; left:12px;
+      background: rgba(17,17,20,.96);
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      padding:14px;
+      box-shadow: var(--shadow);
     }
+    .mobile-panel a{
+      display:block;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      margin-top:10px;
+      font-weight:700;
+    }
+    .mobile-panel .close-row{display:flex; justify-content:space-between; align-items:center; gap:10px}
   </style>
 </head>
 
 <body>
+  <!-- Top Contact Bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <span class="pill"><span class="dot"></span> Open Today: Mon–Sat 10AM–6PM</span>
+          <a class="pill" href="tel:+15555555555" aria-label="Call Prime Gold">
+            <strong>Call:</strong> (555) 555-5555
+          </a>
+          <a class="pill" href="sms:+15555551234" aria-label="Text Prime Gold">
+            <strong>Text:</strong> (555) 555-1234
+          </a>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn btn-gold" href="#quote">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Header / Nav -->
   <header>
-    <h1>Prime Gold</h1>
-    <p>Sell Gold • Silver • Coins • Diamonds</p>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <span class="logo" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">Prime Gold</div>
+            <div class="brand-sub">Top payouts • Fast evaluations • No pressure</div>
+          </div>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#how">How It Works</a>
+          <a href="#buy">What We Buy</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+          <a class="btn btn-gold" href="#quote">Free Quote</a>
+        </nav>
+
+        <button class="btn hamburger" id="openMenu" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <p>
-      Welcome to Prime Gold. We buy gold jewelry, scrap gold, silver,
-      coins, diamonds, and luxury watches.
-    </p>
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="kicker">Sell Gold for Top Dollar</div>
+          <h1>Turn your gold into cash—<span style="color:var(--gold)">today</span>.</h1>
+          <p class="lead">
+            Bring in your gold jewelry, coins, silver, diamonds, or luxury watches.
+            We provide a clear, no-obligation evaluation and pay you instantly if you choose to sell.
+          </p>
 
-    <p>
-      Free evaluations. No pressure. Instant payouts.
-    </p>
+          <div class="bullets" aria-label="Highlights">
+            <div class="bullet">
+              <span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4-9.4 9.4z"/></svg>
+              </span>
+              <div><strong>Free evaluation</strong><div class="muted" style="font-size:12px">No appointment needed (optional).</div></div>
+            </div>
+            <div class="bullet">
+              <span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4-9.4 9.4z"/></svg>
+              </span>
+              <div><strong>Instant payout</strong><div class="muted" style="font-size:12px">Cash or preferred payment.</div></div>
+            </div>
+            <div class="bullet">
+              <span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4-9.4 9.4z"/></svg>
+              </span>
+              <div><strong>Transparent offers</strong><div class="muted" style="font-size:12px">We explain weights, karats, and comps.</div></div>
+            </div>
+            <div class="bullet">
+              <span class="check" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4-9.4 9.4z"/></svg>
+              </span>
+              <div><strong>House calls available</strong><div class="muted" style="font-size:12px">Ask about mobile appointments.</div></div>
+            </div>
+          </div>
 
-    <div class="cta">
-      <a class="button" href="tel:+15555555555">Call Now</a>
-      <a class="button" href="mailto:info@primegold.com">Get a Free Quote</a>
+          <div class="hero-cta">
+            <a class="btn btn-gold btn-lg" href="tel:+15555555555">Call Now</a>
+            <a class="btn btn-lg" href="#buy">See What We Buy</a>
+          </div>
+        </div>
+
+        <!-- Quote form -->
+        <aside id="quote" class="form-card" aria-label="Get a Free Estimate">
+          <p class="form-title">Get a Free Estimate</p>
+          <p class="form-sub">Send a quick request and we’ll respond ASAP.</p>
+
+          <form id="quoteForm">
+            <div class="row2">
+              <div>
+                <label for="first">First Name</label>
+                <input id="first" name="first" autocomplete="given-name" required placeholder="Jane" />
+              </div>
+              <div>
+                <label for="last">Last Name</label>
+                <input id="last" name="last" autocomplete="family-name" required placeholder="Doe" />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" autocomplete="email" required placeholder="jane@email.com" />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" autocomplete="tel" required placeholder="(555) 555-5555" />
+              </div>
+            </div>
+
+            <div>
+              <label for="item">What are you looking to sell?</label>
+              <select id="item" name="item" required>
+                <option value="" selected disabled>Choose an option</option>
+                <option>Gold Jewelry</option>
+                <option>Scrap/Broken Gold</option>
+                <option>Silver</option>
+                <option>Coins & Bullion</option>
+                <option>Diamonds</option>
+                <option>Luxury Watches</option>
+                <option>Estate Jewelry</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message">Details (optional)</label>
+              <textarea id="message" name="message" placeholder="Example: 14K necklace, approx 20g; 2 rings; any photos?"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-gold btn-block" type="submit">Request a Quote</button>
+              <a class="btn btn-block" href="sms:+15555551234">Text Photos</a>
+            </div>
+
+            <div class="fineprint">
+              By submitting, you agree we may contact you about your request. No spam—ever.
+            </div>
+          </form>
+
+          <div class="mini" aria-label="Trust badges">
+            <span>✔ Same-day offers</span>
+            <span>✔ No obligation</span>
+            <span>✔ Friendly experts</span>
+          </div>
+        </aside>
+      </div>
     </div>
   </main>
 
+  <!-- How It Works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">How it works</h2>
+          <p class="section-desc">Three simple steps—fast, straightforward, and transparent.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon" aria-hidden="true">①</div>
+          <h3>Bring in your items</h3>
+          <p>Gather your valuables and visit Prime Gold. Walk-ins welcome. Prefer a house call? We can arrange that too.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">②</div>
+          <h3>Free evaluation</h3>
+          <p>We review karat, weight, condition, and market demand. You’ll understand exactly how the offer is calculated.</p>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">③</div>
+          <h3>Get paid instantly</h3>
+          <p>If you accept, you’re paid on the spot. If not, no worries—take your items and think it over.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Buy -->
+  <section id="buy">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">What we buy</h2>
+          <p class="section-desc">
+            We purchase a wide range of valuables and pay competitive prices—especially for in-demand items.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Gold (all karats)</h3>
+          <p>From everyday jewelry to high-karat pieces—yes, even broken or mismatched items.</p>
+          <div class="tags">
+            <span class="tag">9K</span><span class="tag">10K</span><span class="tag">14K</span><span class="tag">18K</span>
+            <span class="tag">21K</span><span class="tag">22K</span><span class="tag">24K</span>
+          </div>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Chains</span><span class="tag">Rings</span><span class="tag">Bracelets</span><span class="tag">Earrings</span>
+            <span class="tag">Dental Gold</span><span class="tag">Gold Coins</span><span class="tag">Bullion</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Silver, coins, diamonds & watches</h3>
+          <p>We also buy investment pieces and luxury items with strong resale demand.</p>
+          <div class="tags">
+            <span class="tag">Silver Jewelry</span><span class="tag">Sterling</span><span class="tag">Silver Bars</span><span class="tag">Bullion Coins</span>
+            <span class="tag">Diamond Jewelry</span><span class="tag">Rolex / Luxury</span><span class="tag">Estate Jewelry</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <div class="banner">
+        <div>
+          <h3>Want the easiest option?</h3>
+          <p>Text us photos for a quick estimate, then stop by for a final in-person evaluation.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-gold" href="sms:+15555551234">Text Photos</a>
+          <a class="btn" href="tel:+15555555555">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Customer reviews</h2>
+          <p class="section-desc">Replace these with your real Google reviews (names/quotes) once you have them.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Super clear process and a great offer. I appreciated the transparency and zero pressure.”</p>
+          <div class="who">— A. Customer</div>
+        </div>
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Fast evaluation, friendly team, and I walked out paid in minutes. Highly recommend.”</p>
+          <div class="who">— J. Client</div>
+        </div>
+        <div class="card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“They explained everything about my coins and gave a fair price. Great experience.”</p>
+          <div class="who">— S. Reviewer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">FAQ</h2>
+          <p class="section-desc">Quick answers to common questions buyers ask.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Do I need an appointment?</summary>
+          <p>No—walk-ins are welcome. If you’d like a quieter time or a house call, contact us and we’ll schedule it.</p>
+        </details>
+        <details>
+          <summary>How do you determine the offer?</summary>
+          <p>We consider karat/purity, weight, condition, and current market demand. We’ll explain the breakdown clearly.</p>
+        </details>
+        <details>
+          <summary>What if I don’t accept the offer?</summary>
+          <p>No problem. There’s no obligation—your items remain yours.</p>
+        </details>
+        <details>
+          <summary>Do you buy broken or mismatched jewelry?</summary>
+          <p>Yes. Broken chains, single earrings, scrap gold, and old pieces are commonly purchased.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- House Calls -->
+  <section>
+    <div class="container">
+      <div class="banner">
+        <div>
+          <h3>Can’t make it to the store?</h3>
+          <p>Ask about a <strong>free house call</strong> (availability varies by location and items).</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-gold" href="#quote">Request a House Call</a>
+          <a class="btn" href="tel:+15555555555">Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    © 2026 Prime Gold. All rights reserved.
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <span class="logo" aria-hidden="true"></span>
+            <div>
+              <div class="brand-name">Prime Gold</div>
+              <div class="brand-sub">Simple • Secure • Straightforward</div>
+            </div>
+          </div>
+          <p class="muted" style="margin:0; max-width:72ch">
+            Prime Gold buys gold, silver, coins, diamonds, and luxury watches. We focus on transparent evaluations and fast payouts.
+          </p>
+
+          <div class="footer-links" aria-label="Footer links">
+            <a href="#how">How It Works</a>
+            <a href="#buy">What We Buy</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+            <a href="#quote">Free Quote</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Contact</h3>
+          <p class="muted" style="margin:0 0 10px">
+            <strong>Address:</strong> 123 Main St, Your City, NY 10001<br>
+            <strong>Hours:</strong> Mon–Sat 10AM–6PM • Sun Closed
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn btn-gold" href="tel:+15555555555">Call (555) 555-5555</a>
+            <a class="btn" href="sms:+15555551234">Text (555) 555-1234</a>
+          </div>
+          <p class="muted" style="margin:12px 0 0; font-size:12px">
+            © <span id="year"></span> Prime Gold. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
   </footer>
 
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="close-row">
+        <div style="font-weight:800">Menu</div>
+        <button class="btn" id="closeMenu">Close</button>
+      </div>
+      <a href="#how" class="mnav">How It Works</a>
+      <a href="#buy" class="mnav">What We Buy</a>
+      <a href="#reviews" class="mnav">Reviews</a>
+      <a href="#faq" class="mnav">FAQ</a>
+      <a href="#quote" class="mnav">Get a Free Estimate</a>
+      <a href="tel:+15555555555" class="mnav">Call Now</a>
+    </div>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Basic mobile menu
+    const openBtn = document.getElementById("openMenu");
+    const closeBtn = document.getElementById("closeMenu");
+    const menu = document.getElementById("mobileMenu");
+
+    function openMenu(){
+      menu.style.display = "block";
+      menu.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeMenu(){
+      menu.style.display = "none";
+      menu.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+    openBtn?.addEventListener("click", openMenu);
+    closeBtn?.addEventListener("click", closeMenu);
+    menu?.addEventListener("click", (e)=>{ if(e.target === menu) closeMenu(); });
+    document.querySelectorAll(".mnav").forEach(a => a.addEventListener("click", closeMenu));
+
+    // Simple form handler (no backend). Replace with your endpoint or CRM.
+    document.getElementById("quoteForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const subject = encodeURIComponent("Prime Gold – Quote Request");
+      const body = encodeURIComponent(
+        `New quote request:\n\n` +
+        `Name: ${data.first || ""} ${data.last || ""}\n` +
+        `Email: ${data.email || ""}\n` +
+        `Phone: ${data.phone || ""}\n` +
+        `Item Type: ${data.item || ""}\n` +
+        `Details: ${data.message || ""}\n`
+      );
+
+      // Opens user's email client (edit recipient):
+      window.location.href = `mailto:info@primegold.com?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
