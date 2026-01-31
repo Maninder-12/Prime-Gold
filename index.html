@@ -270,25 +270,94 @@
         </div>
       </div>
 
-      <div class="grid-3">
-        <div class="card">
+      <div class="grid-3" id="reviewsGrid">
+        <div class="card review-card" style="display:none">
           <div class="stars">★★★★★</div>
           <p class="quote">“Super clear process and a great offer. I appreciated the transparency and zero pressure.”</p>
           <div class="who">— A. Customer</div>
         </div>
-        <div class="card">
+        <div class="card review-card" style="display:none">
           <div class="stars">★★★★★</div>
           <p class="quote">“Fast evaluation, friendly team, and I walked out paid in minutes. Highly recommend.”</p>
           <div class="who">— J. Client</div>
         </div>
-        <div class="card">
+        <div class="card review-card" style="display:none">
           <div class="stars">★★★★★</div>
           <p class="quote">“They explained everything about my coins and gave a fair price. Great experience.”</p>
           <div class="who">— S. Reviewer</div>
         </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Best price for my gold jewelry. No hassle, just honest service.”</p>
+          <div class="who">— M. Patel</div>
+        </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“I was nervous to sell my coins, but they made me feel comfortable and valued.”</p>
+          <div class="who">— L. Kim</div>
+        </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Quick, easy, and trustworthy. I’ll be back if I have more to sell.”</p>
+          <div class="who">— D. Singh</div>
+        </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“They answered all my questions and gave a fair offer for my silverware.”</p>
+          <div class="who">— E. Brown</div>
+        </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Professional and friendly. I got more than I expected for my diamonds.”</p>
+          <div class="who">— R. Garcia</div>
+        </div>
+        <div class="card review-card" style="display:none">
+          <div class="stars">★★★★★</div>
+          <p class="quote">“Excellent service from start to finish. Highly recommend Prime Gold!”</p>
+          <div class="who">— T. Nguyen</div>
+        </div>
       </div>
+      <!-- Arrows removed as requested -->
     </div>
   </section>
+  <script>
+  // Auto-rotating reviews with pause on hover
+  document.addEventListener("DOMContentLoaded", function() {
+    const reviews = Array.from(document.querySelectorAll('.review-card'));
+    const perPage = 3;
+    let start = 0;
+    let autoTimer = null;
+    let paused = false;
+    function showReviews() {
+      reviews.forEach((card, i) => {
+        card.style.display = (i >= start && i < start + perPage) ? '' : 'none';
+      });
+    }
+    function next() {
+      start += perPage;
+      if (start >= reviews.length) start = 0;
+      showReviews();
+    }
+    function prev() {
+      start -= perPage;
+      if (start < 0) start = reviews.length - (reviews.length % perPage || perPage);
+      showReviews();
+    }
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        if (!paused) next();
+      }, 3500);
+    }
+    // Removed arrow button event listeners since arrows are gone
+    reviews.forEach(card => {
+      card.addEventListener('mouseenter', () => { paused = true; });
+      card.addEventListener('mouseleave', () => { paused = false; });
+    });
+    showReviews();
+    startAuto();
+  });
+  </script>
 
   <!-- FAQ -->
   <section id="faq">

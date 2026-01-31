@@ -5,14 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sell Coins | Prime Gold</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .coins-hero {
+      background: linear-gradient(135deg, rgba(230,230,230,0.85) 60%, rgba(200,171,84,0.12) 100%), url('assets/coins-wwb1.jpg') center/cover no-repeat;
+      padding: 40px 0 24px;
+      text-align: center;
+      min-height: 320px;
+      position: relative;
+    }
+    .coins-hero h1 { color: #c8ab54; font-size: 2.8em; margin-bottom: 10px; }
+    .coins-hero p { font-size: 1.1em; color: #333; margin-bottom: 0; }
+    .faq-list { max-width: 700px; margin: 36px auto; font-size: 0.98em; }
+    .faq-list details { margin-bottom: 16px; }
+    .faq-list summary { font-weight: 700; font-size: 1em; cursor: pointer; }
+    .faq-list p { margin: 10px 0 0; color: #444; font-size: 0.97em; }
+    .other-questions { margin-top: 32px; text-align: left; }
+    .back-link { display:inline-block; margin:18px 0 0 18px; color:#c8ab54; font-weight:700; text-decoration:none; }
+    .back-link:hover { text-decoration:underline; }
+  </style>
 </head>
 <body>
-  <header>
-    <a href="index.html">&larr; Back to Home</a>
+  <a class="back-link" href="index.html">&larr; Back to Home</a>
+  <section class="coins-hero">
     <h1>Sell Coins</h1>
-  </header>
-  <main>
     <p>We buy all types of coins. Bring your collection to Prime Gold for a free evaluation and top dollar offer.</p>
+  </section>
+  <main>
+    <section class="faq-list">
+      <details open>
+        <summary>How much will you pay me for my coins?</summary>
+        <p>We pay based on the metal value, rarity, and condition of your coins. You’ll get a fair, competitive offer with no obligation.</p>
+      </details>
+      <details>
+        <summary>How do you evaluate the coins (metal value vs collectible value)?</summary>
+        <p>We assess both the precious metal content and the collectible value, considering factors like age, rarity, and demand.</p>
+      </details>
+      <details>
+        <summary>How are the coins counted and verified (and can I see the process)?</summary>
+        <p>We count and verify coins in front of you, using magnification and reference guides for transparency and accuracy.</p>
+      </details>
+      <details>
+        <summary>Do you buy all types of coins (gold, silver, old, foreign, damaged)?</summary>
+        <p>Yes! We buy gold, silver, platinum, old, foreign, and even damaged coins—single pieces or entire collections.</p>
+      </details>
+      <details>
+        <summary>How and when do I get paid?</summary>
+        <p>You get paid instantly, right after you accept our offer—by cash, check, or bank transfer, whichever you prefer.</p>
+      </details>
+      <details class="other-questions">
+        <summary>Any other questions?</summary>
+        <p>If you have a different question, please call <a href="tel:+15163988892">516-398-8892</a> or <a href="mailto:info@primegold.com">email us</a> for a quick answer!</p>
+      </details>
+    </section>
   </main>
 </body>
 </html>
