@@ -20,7 +20,10 @@ html,body{height:100%}
 body{
   margin:0;
   font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(200,171,84,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(18,18,24,.10), transparent 55%),
+    var(--bg);
   color: var(--ink);
   line-height:1.55;
 }
@@ -226,6 +229,63 @@ section{padding:54px 0}
 @media (max-width: 900px){
   .grid-3{grid-template-columns:1fr}
   .grid-2{grid-template-columns:1fr}
+}
+
+/* ========= Sell Pages ========= */
+.sell-hero{padding:36px 0 10px}
+.sell-hero h1{
+  margin:0 0 8px;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.6px;
+}
+.sell-hero p{margin:0; color:var(--muted-ink); max-width:70ch}
+
+.buy-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+.buy-card{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  align-items:stretch;
+  border:1px solid var(--soft);
+  border-radius: var(--radius2);
+  padding:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.94));
+  box-shadow: var(--shadow);
+}
+.buy-media{
+  border-radius:14px;
+  overflow:hidden;
+  aspect-ratio: 4 / 3;
+  background: #fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.buy-media img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 6px;
+  display:block;
+  background: transparent;
+}
+.buy-body h2{margin:0 0 8px; font-size:22px}
+.buy-body ul{margin:0; padding-left:18px; color:var(--muted-ink)}
+.buy-note{margin-top:10px; color:var(--muted-ink)}
+@media (max-width: 900px){
+  .buy-grid{grid-template-columns:1fr}
+}
+
+.sell-accent{
+  background: linear-gradient(135deg, rgba(200,171,84,.12), rgba(18,18,24,.02));
+  border-top: 1px solid var(--soft);
+  border-bottom: 1px solid var(--soft);
 }
 .card{
   background: #fff;

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sell Gold | Prime Gold</title>
+  <meta name="description" content="Sell gold in Syosset, NY. Prime Gold buys gold jewelry, scrap gold, gold coins, and bullion. Free appraisal and instant payout." />
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    .sell-hero{
+      padding:54px 0 28px;
+      background: linear-gradient(135deg, rgba(200,171,84,.15), rgba(255,255,255,0));
+      border-bottom:1px solid var(--soft);
+    }
+    .sell-hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+    }
+    @media(max-width:980px){.sell-hero-grid{grid-template-columns:1fr}}
+    .sell-kicker{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      border:1px solid rgba(200,171,84,.4);
+      background:rgba(200,171,84,.12);
+    }
+    .sell-hero h1{
+      margin:12px 0 6px;
+      font-size:clamp(36px,4vw,56px);
+    }
+    .estimate-card{
+      background:#fff;
+      border:1px solid var(--soft);
+      border-radius:var(--radius2);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media(max-width:520px){.form-grid{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;font-weight:900}
+    .field input,.field select{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--soft);
+      font-weight:600;
+    }
+    select[multiple]{min-height:120px}
+    .buy-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    @media(max-width:900px){.buy-grid{grid-template-columns:1fr}}
+    .buy-card{
+      border:1px solid var(--soft);
+      border-radius:var(--radius2);
+      overflow:hidden;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+    }
+    .buy-media{
+      height:220px;
+      overflow:hidden;
+    }
+    .buy-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .buy-body{padding:16px}
+    .also-buy-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    @media(max-width:900px){.also-buy-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.also-buy-grid{grid-template-columns:1fr}}
+    .also-buy-link{
+      padding:16px;
+      border:1px solid var(--soft);
+      border-radius:16px;
+      text-decoration:none;
+      font-weight:900;
+      color:var(--ink);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .form-success{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(25,135,84,.4);
+      background:rgba(25,135,84,.12);
+      font-weight:900;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <span class="pill"><span class="dot"></span> Open Today: Mon–Sat 10AM–6PM</span>
+        <a class="pill" href="tel:+15163988892"><strong>Call:</strong> 516-398-8892</a>
+        <a class="pill" href="sms:+15163988892"><strong>Text:</strong> 516-398-8892</a>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn btn-gold" href="Contact-Us.html">Free Estimate</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="index.html">
+        <span class="logo"></span>
+        <div>
+          <div class="brand-name">Prime Gold</div>
+          <div class="brand-sub">White • Black • Gold</div>
+        </div>
+      </a>
+
+      <nav class="navlinks">
+        <a href="Sell-Gold.html">Sell Gold</a>
+        <a href="Sell-Silver.html">Sell Silver</a>
+        <a href="Sell-Coins.html">Sell Coins</a>
+        <a href="Sell-Diamonds.html">Sell Diamonds</a>
+        <a href="Sell-Watches.html">Sell Watches</a>
+        <a href="Contact-Us.html">Contact Us</a>
+      </nav>
+
+      <button class="btn hamburger" id="openMenu">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO + FORM -->
+<section class="sell-hero">
+  <div class="container">
+    <div class="sell-hero-grid">
+
+      <div>
+        <span class="sell-kicker">Free Appraisal • Instant Payout</span>
+        <h1>Sell Gold in Syosset, NY</h1>
+        <p>We buy gold jewelry, scrap gold, bars, and coins. Transparent evaluations and same-day payment.</p>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-gold" href="tel:+15163988892">Call Now</a>
+          <a class="btn" href="sms:+15163988892">Text Photos</a>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <aside class="estimate-card">
+        <h2>Get A Free Estimate Today</h2>
+        <p class="muted">Select one or more items you want to sell.</p>
+
+        <form
+          action="https://formsubmit.co/thestudybench@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Prime Gold – Free Estimate Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="Sell-Gold.html?success=1">
+
+          <div class="form-grid">
+            <div class="field">
+              <label>First Name</label>
+              <input name="First Name" required>
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <input name="Last Name" required>
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="Email" required>
+            </div>
+            <div class="field">
+              <label>Phone Number</label>
+              <input type="tel" name="Phone" required>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <label>What items are you looking to sell?</label>
+              <select name="Items" multiple required>
+                <option>Gold</option>
+                <option>Silver</option>
+                <option>Coins</option>
+                <option>Watches</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+            <p class="muted">We’ll only use this to contact you.</p>
+            <button class="btn btn-gold" type="submit">Request Estimate</button>
+          </div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          ✅ Thanks! We’ve received your request and will reach out shortly.
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE BUY -->
+<section class="sell-accent">
+  <div class="container">
+    <div class="buy-grid">
+
+      <article class="buy-card">
+        <div class="buy-media">
+          <img src="assets/gold-wwb2.webp" alt="Gold bars">
+        </div>
+        <div class="buy-body">
+          <h2>Gold Bars</h2>
+          <p>All major mints and fractional bars.</p>
+        </div>
+      </article>
+
+      <article class="buy-card">
+        <div class="buy-media">
+          <img src="assets/gold-coins-wwb2.webp" alt="Gold coins">
+        </div>
+        <div class="buy-body">
+          <h2>Gold Coins</h2>
+          <p>Bullion, rounds, and select collector coins.</p>
+        </div>
+      </article>
+
+      <article class="buy-card">
+        <div class="buy-media">
+          <img src="assets/gold-wwb1.jpg" alt="Scrap gold">
+        </div>
+        <div class="buy-body">
+          <h2>Scrap Gold</h2>
+          <p>Broken jewelry, single earrings, dental gold.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- WE ALSO BUY -->
+<section>
+  <div class="container">
+    <h2 class="section-title">We Also Buy</h2>
+    <div class="also-buy-grid">
+      <a class="also-buy-link" href="Sell-Coins.html">Coins →</a>
+      <a class="also-buy-link" href="Sell-Diamonds.html">Diamonds →</a>
+      <a class="also-buy-link" href="Sell-Silver.html">Silver →</a>
+      <a class="also-buy-link" href="Sell-Watches.html">Watches →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-panel">
+    <button class="btn" id="closeMenu">Close</button>
+    <a href="Sell-Gold.html" class="mnav">Sell Gold</a>
+    <a href="Sell-Silver.html" class="mnav">Sell Silver</a>
+    <a href="Sell-Coins.html" class="mnav">Sell Coins</a>
+    <a href="Sell-Diamonds.html" class="mnav">Sell Diamonds</a>
+    <a href="Sell-Watches.html" class="mnav">Sell Watches</a>
+    <a href="Contact-Us.html" class="mnav">Contact Us</a>
+  </div>
+</div>
+
+<!-- Success Message Trigger -->
+<script>
+  if (new URLSearchParams(window.location.search).get("success") === "1") {
+    const el = document.getElementById("formSuccess");
+    if (el) el.style.display = "block";
+  }
+</script>
+
+<script src="script.js" defer></script>
+</body>
+</html>
