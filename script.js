@@ -31,11 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevBtn = document.getElementById("wwbPrev");
   const nextBtn = document.getElementById("wwbNext");
   const dotsWrap = document.getElementById("wwbDots");
+  const slider = document.querySelector(".wwb-slider");
 
-  if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
+  if (!track || !prevBtn || !nextBtn || !dotsWrap || !slider) return;
 
   const cards = Array.from(track.querySelectorAll(".wwb-card"));
-  const AUTO_DELAY = 4500; // every few seconds
+  const AUTO_DELAY = 3500; // every few seconds
   let index = 0;
   let autoTimer;
 
@@ -134,6 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
     autoTimer = setInterval(moveNext, AUTO_DELAY);
   }
 
+  function stopAuto() {
+    clearInterval(autoTimer);
+  }
+
   function resetAuto() {
     startAuto();
   }
@@ -147,6 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
     moveNext();
     resetAuto();
   });
+
+  slider.addEventListener("pointerenter", stopAuto);
+  slider.addEventListener("pointerleave", startAuto);
+  slider.addEventListener("focusin", stopAuto);
+  slider.addEventListener("focusout", startAuto);
 
   window.addEventListener("resize", () => {
     // On resize, rebuild dots because step size / per view can change
