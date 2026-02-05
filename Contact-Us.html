@@ -7,17 +7,175 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Topbar + Header (same as site) -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <span class="pill"><span class="dot"></span> Open Today: Mon–Sat 10AM–6PM</span>
+          <a class="pill" href="tel:+15163988892" aria-label="Call Prime Gold"><strong>Call:</strong> 516-398-8892</a>
+          <a class="pill" href="sms:+15163988892" aria-label="Text Prime Gold"><strong>Text:</strong> 516-398-8892</a>
+        </div>
+        <div class="topbar-actions">
+          <a class="btn btn-gold" href="tel:+15163988892">Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header>
-    <a href="index.html">&larr; Back to Home</a>
-    <h1>Contact Us</h1>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <span class="logo" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">Prime Gold</div>
+            <div class="brand-sub">White • Black • Gold</div>
+          </div>
+        </a>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="Sell-Gold.html">Sell Gold</a>
+          <a href="Sell-Silver.html">Sell Silver</a>
+          <a href="Sell-Coins.html">Sell Coins</a>
+          <a href="Sell-Diamonds.html">Sell Diamonds</a>
+          <a href="Sell-Watches.html">Sell Watches</a>
+          <a href="Contact-Us.html">Contact Us</a>
+        </nav>
+
+        <button class="btn hamburger" id="openMenu" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
   </header>
-  <main>
-    <p>Contact Prime Gold for questions, appointments, or more information.</p>
-    <ul>
-      <li><strong>Phone:</strong> <a href="tel:+15163988892">516-398-8892</a></li>
-      <li><strong>Email:</strong> <a href="mailto:info@primegold.com">info@primegold.com</a></li>
-      <li><strong>Address:</strong> 123 Main St, Syosset, NY 11791</li>
-    </ul>
+
+  <main class="container" style="padding:36px 0 64px;">
+    <div class="section-head">
+      <div>
+        <h1 class="section-title">Get in touch</h1>
+        <p class="section-desc">Questions about selling, appointments, or an estimate? Send us a message and we’ll respond quickly.</p>
+      </div>
+    </div>
+
+    <div class="bougie-bg">
+      <div class="contact-grid">
+        <div class="contact-info anim-fade-up">
+          <div class="card">
+            <h3>Contact details</h3>
+            <p class="muted" style="margin-top:8px">Reach us by phone or email during business hours.</p>
+            <p style="margin-top:12px"><strong>Phone:</strong> <a href="tel:+15163988892">516-398-8892</a><br>
+            <strong>Email:</strong> <a href="mailto:info@primegold.com">info@primegold.com</a><br>
+            <strong>Address:</strong> 123 Main St, Syosset, NY 11791</p>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3>Hours</h3>
+            <p class="muted" style="margin-top:8px">Mon–Sat 10AM–6PM • Sun Closed</p>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3>Visit us</h3>
+            <p class="muted" style="margin-top:8px">Walk-ins welcome—stop by during business hours for an evaluation and instant payout.</p>
+            <div style="margin-top:12px"><a class="btn btn-gold" href="tel:+15163988892">Call to confirm</a></div>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3>Location</h3>
+            <div style="margin-top:10px">
+              <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Prime%20Gold%20Syosset%20NY&z=13&output=embed"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <aside class="contact-card anim-fade-up" aria-label="Contact form">
+          <h3>Send us a message</h3>
+          <form id="contactForm">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your full name">
+
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" required placeholder="(555) 555-5555">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your items or ask a question..."></textarea>
+
+            <div class="contact-actions">
+              <button class="btn" type="reset">Reset</button>
+              <button class="btn btn-gold" type="submit">Send message</button>
+            </div>
+
+            <div id="contactStatus" role="status" aria-live="polite" class="contact-status"></div>
+            <p class="contact-note">By submitting, you agree to be contacted by Prime Gold. We only use this to respond to your inquiry.</p>
+          </form>
+        </aside>
+      </div>
+    </div>
+
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <span class="logo" aria-hidden="true"></span>
+            <div>
+              <div class="brand-name">Prime Gold</div>
+              <div class="brand-sub">Top payouts • Clear offers • Fast service</div>
+            </div>
+          </div>
+          <p class="muted" style="margin:0; max-width:72ch">Prime Gold buys gold, silver, coins, diamonds, and luxury watches. We focus on transparent evaluations and fast payouts.</p>
+
+          <div class="footer-links" aria-label="Footer links">
+            <a href="#how">How It Works</a>
+            <a href="#what-we-buy-slider">What We Buy</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+
+        <div class="card" id="quote">
+          <h3 style="margin-top:0">Contact</h3>
+          <p class="muted" style="margin:0 0 10px"><strong>Phone:</strong> 516-398-8892<br><strong>City:</strong> Syosset, NY<br><strong>Hours:</strong> Mon–Sat 10AM–6PM • Sun Closed</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn btn-gold" href="tel:+15163988892">Call</a>
+            <a class="btn" href="sms:+15163988892">Text</a>
+          </div>
+          <p class="muted" style="margin:12px 0 0; font-size:12px">© <span id="year"></span> Prime Gold. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="close-row">
+        <div style="font-weight:900">Menu</div>
+        <button class="btn" id="closeMenu">Close</button>
+      </div>
+      <a href="#how" class="mnav">How It Works</a>
+      <a href="#what-we-buy-slider" class="mnav">What We Buy</a>
+      <a href="#reviews" class="mnav">Reviews</a>
+      <a href="#faq" class="mnav">FAQ</a>
+      <a href="tel:+15163988892" class="mnav">Call Now</a>
+    </div>
+  </div>
+
+  <script>
+  // Simple client-side handler that emulates form submission and shows a success message
+  document.getElementById('contactForm')?.addEventListener('submit', function(e){
+    e.preventDefault();
+    const status = document.getElementById('contactStatus');
+    status.style.display = 'block';
+    status.textContent = 'Thanks — we received your message and will be in touch shortly.';
+    // basic clear
+    this.querySelectorAll('input, textarea').forEach(i => i.value = '');
+  });
+  </script>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
