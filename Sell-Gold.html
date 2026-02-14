@@ -107,6 +107,87 @@
       background:rgba(25,135,84,.12);
       font-weight:900;
     }
+    .pg-ms-label { margin-top: 10px; display:block; font-weight:700; }
+    .pg-ms {
+      position: relative;
+      margin-top: 8px;
+      width: 100%;
+      z-index: 3;
+    }
+    .pg-ms-btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(18,18,24,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight:800;
+      color:#121218;
+      transition:.15s ease;
+    }
+    .pg-ms-btn:hover{ transform: translateY(-1px); background: rgba(18,18,24,.02); }
+    .pg-ms-btn-text--placeholder { color: rgba(18,18,24,.58); font-weight:700; }
+    .pg-ms-panel{
+      margin-top:8px;
+      background:#fff;
+      border:1px solid rgba(18,18,24,.12);
+      border-radius:16px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+      padding:10px;
+      display:none;
+      max-height: 240px;
+      overflow: auto;
+    }
+    .pg-ms-panel.is-open{ display:block; }
+    .pg-ms-option{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 10px;
+      border-radius:14px;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+    .pg-ms-option:hover{ background: rgba(18,18,24,.03); }
+    .pg-ms-option input{
+      width:18px; height:18px;
+      accent-color:#c8ab54;
+      cursor:pointer;
+    }
+    .pg-ms-option span{ font-weight:800; }
+    .pg-ms-actions{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 6px 2px;
+      border-top:1px solid rgba(18,18,24,.10);
+      margin-top:6px;
+    }
+    .pg-ms-mini{
+      border:1px solid rgba(18,18,24,.12);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .pg-ms-mini:hover{ background: rgba(18,18,24,.03); }
+    .pg-ms-hint{
+      margin:8px 0 0;
+      font-size:12px;
+      color: rgba(18,18,24,.65);
+    }
+    .form-note{
+      font-size: 12px;
+      margin-top: 10px;
+      color: rgba(18,18,24,.65);
+    }
   </style>
 </head>
 
@@ -172,53 +253,66 @@
       </div>
 
       <!-- FORM -->
-      <aside class="estimate-card">
+      <aside class="estimate-card" id="quote">
         <h2>Get A Free Estimate Today</h2>
-        <p class="muted">Select one or more items you want to sell.</p>
-
-        <form
-          action="https://formsubmit.co/thestudybench@gmail.com"
-          method="POST"
-        >
-          <input type="hidden" name="_subject" value="Prime Gold – Free Estimate Request">
+        <form action="https://formsubmit.co/a088c95dcf41e598246d347cc4e9cef8" method="POST">
+          <input type="hidden" name="_subject" value="New Estimate Request - Sell Gold (Prime Gold)">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="Sell-Gold.html?success=1">
+          <input type="hidden" name="_next" value="thank-you.html">
+          <input type="hidden" name="Page" value="Sell-Gold.html">
 
-          <div class="form-grid">
-            <div class="field">
-              <label>First Name</label>
-              <input name="First Name" required>
+          <label>First Name</label>
+          <input type="text" name="First Name" required>
+
+          <label>Last Name</label>
+          <input type="text" name="Last Name" required>
+
+          <label>Email</label>
+          <input type="email" name="Email" required>
+
+          <label>Phone Number</label>
+          <input type="tel" name="Phone" required>
+
+          <label class="pg-ms-label" for="pgMsBtn">What items are you looking to sell?</label>
+
+          <div class="pg-ms" id="pgMs">
+            <button class="pg-ms-btn" id="pgMsBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span id="pgMsText" class="pg-ms-btn-text--placeholder">Select one or more…</span>
+              <span aria-hidden="true">▾</span>
+            </button>
+
+            <div class="pg-ms-panel" id="pgMsPanel" role="listbox" aria-label="Items to sell">
+              <label class="pg-ms-option">
+                <input type="checkbox" name="Items[]" value="Gold">
+                <span>Gold</span>
+              </label>
+              <label class="pg-ms-option">
+                <input type="checkbox" name="Items[]" value="Silver">
+                <span>Silver</span>
+              </label>
+              <label class="pg-ms-option">
+                <input type="checkbox" name="Items[]" value="Coins">
+                <span>Coins</span>
+              </label>
+              <label class="pg-ms-option">
+                <input type="checkbox" name="Items[]" value="Watches">
+                <span>Watches</span>
+              </label>
+
+              <div class="pg-ms-actions">
+                <button class="pg-ms-mini" type="button" id="pgMsClear">Clear</button>
+                <button class="pg-ms-mini" type="button" id="pgMsDone">Done</button>
+              </div>
             </div>
-            <div class="field">
-              <label>Last Name</label>
-              <input name="Last Name" required>
-            </div>
-            <div class="field">
-              <label>Email</label>
-              <input type="email" name="Email" required>
-            </div>
-            <div class="field">
-              <label>Phone Number</label>
-              <input type="tel" name="Phone" required>
-            </div>
-            <div class="field" style="grid-column:1/-1">
-              <label>What type of gold are you looking to sell?</label>
-              <select name="Items" multiple required>
-                <option>Gold Jewelry</option>
-                <option>Gold Coins</option>
-                <option>Gold Bars/Bullion</option>
-                <option>Scrap Gold</option>
-                <option>Dental Gold</option>
-                <option>Other</option>
-              </select>
-            </div>
+
+            <p class="pg-ms-hint">You can choose more than one option.</p>
           </div>
 
-          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-            <p class="muted">We’ll only use this to contact you.</p>
+          <div class="estimate-actions">
             <button class="btn btn-gold" type="submit">Request Estimate</button>
           </div>
+          <p class="form-note">We’ll only use this to contact you.</p>
         </form>
 
         <div class="form-success" id="formSuccess">
@@ -296,6 +390,62 @@
     <a href="Contact-Us.html" class="mnav">Contact Us</a>
   </div>
 </div>
+
+<!-- Dropdown JS -->
+<script>
+  (function(){
+    const root = document.getElementById("pgMs");
+    if(!root) return;
+
+    const btn = document.getElementById("pgMsBtn");
+    const panel = document.getElementById("pgMsPanel");
+    const text = document.getElementById("pgMsText");
+    const clearBtn = document.getElementById("pgMsClear");
+    const doneBtn = document.getElementById("pgMsDone");
+    const checks = Array.from(panel.querySelectorAll('input[type="checkbox"][name="Items[]"]'));
+
+    function selectedValues(){
+      return checks.filter(c => c.checked).map(c => c.value);
+    }
+    function updateText(){
+      const vals = selectedValues();
+      if(vals.length === 0){
+        text.textContent = "Select one or more…";
+        text.classList.add("pg-ms-btn-text--placeholder");
+      } else {
+        text.textContent = vals.join(", ");
+        text.classList.remove("pg-ms-btn-text--placeholder");
+      }
+    }
+    function open(){
+      panel.classList.add("is-open");
+      btn.setAttribute("aria-expanded","true");
+    }
+    function close(){
+      panel.classList.remove("is-open");
+      btn.setAttribute("aria-expanded","false");
+    }
+    function toggle(){
+      panel.classList.contains("is-open") ? close() : open();
+    }
+
+    btn.addEventListener("click", toggle);
+    checks.forEach(c => c.addEventListener("change", updateText));
+    clearBtn.addEventListener("click", () => {
+      checks.forEach(c => c.checked = false);
+      updateText();
+    });
+    doneBtn.addEventListener("click", close);
+
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target)) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+    updateText();
+  })();
+</script>
 
 <!-- Success Message Trigger -->
 <script>
