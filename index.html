@@ -76,7 +76,7 @@
           <a href="Sell-Diamonds.html">Sell Diamonds</a>
           <a href="Sell-Watches.html">Sell Watches</a>
           <a href="Contact-Us.html">Contact Us</a>
-+36----        </nav>
+        </nav>
 
         <button class="btn hamburger" id="openMenu" aria-label="Open menu">Menu</button>
       </div>
@@ -320,6 +320,82 @@
       <!-- Arrows removed as requested -->
     </div>
   </section>
+
+  <section id="quote">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Get A Free Estimate Today</h2>
+          <p class="section-desc">Tell us what you want to sell and we’ll contact you quickly.</p>
+        </div>
+      </div>
+
+      <div class="quote-form-wrap">
+        <div class="quote-image-card" aria-hidden="true">
+          <img src="assets/cash-for-gold.jpg" alt="Cash for gold">
+        </div>
+        <aside class="estimate-card quote-form-card">
+          <form action="https://formsubmit.co/a088c95dcf41e598246d347cc4e9cef8" method="POST">
+            <input type="hidden" name="_subject" value="New Estimate Request - Homepage (Prime Gold)">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="thank-you.html">
+            <input type="hidden" name="Page" value="index.html">
+
+            <label>First Name</label>
+            <input type="text" name="First Name" required>
+
+            <label>Last Name</label>
+            <input type="text" name="Last Name" required>
+
+            <label>Email</label>
+            <input type="email" name="Email" required>
+
+            <label>Phone Number</label>
+            <input type="tel" name="Phone" required>
+
+            <label class="pg-ms-label" for="pgMsBtn">What items are you looking to sell?</label>
+            <div class="pg-ms" id="pgMs">
+              <button class="pg-ms-btn" id="pgMsBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span id="pgMsText" class="pg-ms-btn-text--placeholder">Select one or more...</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+
+              <div class="pg-ms-panel" id="pgMsPanel" role="listbox" aria-label="Items to sell">
+                <label class="pg-ms-option">
+                  <input type="checkbox" name="Items[]" value="Gold">
+                  <span>Gold</span>
+                </label>
+                <label class="pg-ms-option">
+                  <input type="checkbox" name="Items[]" value="Silver">
+                  <span>Silver</span>
+                </label>
+                <label class="pg-ms-option">
+                  <input type="checkbox" name="Items[]" value="Coins">
+                  <span>Coins</span>
+                </label>
+                <label class="pg-ms-option">
+                  <input type="checkbox" name="Items[]" value="Watches">
+                  <span>Watches</span>
+                </label>
+
+                <div class="pg-ms-actions">
+                  <button class="pg-ms-mini" type="button" id="pgMsClear">Clear</button>
+                  <button class="pg-ms-mini" type="button" id="pgMsDone">Done</button>
+                </div>
+              </div>
+              <p class="pg-ms-hint">You can choose more than one option.</p>
+            </div>
+
+            <div class="estimate-actions">
+              <button class="btn btn-gold" type="submit">Request Estimate</button>
+            </div>
+            <p class="form-note">We'll only use this to contact you.</p>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </section>
   <script>
   // Auto-rotating reviews with pause on hover
   document.addEventListener("DOMContentLoaded", function() {
@@ -356,6 +432,56 @@
     });
     showReviews();
     startAuto();
+
+    const root = document.getElementById("pgMs");
+    if (root) {
+      const btn = document.getElementById("pgMsBtn");
+      const panel = document.getElementById("pgMsPanel");
+      const text = document.getElementById("pgMsText");
+      const clearBtn = document.getElementById("pgMsClear");
+      const doneBtn = document.getElementById("pgMsDone");
+      const checks = Array.from(panel.querySelectorAll('input[type="checkbox"][name="Items[]"]'));
+
+      function selectedValues() {
+        return checks.filter(c => c.checked).map(c => c.value);
+      }
+      function updateText() {
+        const vals = selectedValues();
+        if (vals.length === 0) {
+          text.textContent = "Select one or more...";
+          text.classList.add("pg-ms-btn-text--placeholder");
+        } else {
+          text.textContent = vals.join(", ");
+          text.classList.remove("pg-ms-btn-text--placeholder");
+        }
+      }
+      function open() {
+        panel.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+      function close() {
+        panel.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+      function toggle() {
+        panel.classList.contains("is-open") ? close() : open();
+      }
+
+      btn.addEventListener("click", toggle);
+      checks.forEach(c => c.addEventListener("change", updateText));
+      clearBtn.addEventListener("click", () => {
+        checks.forEach(c => c.checked = false);
+        updateText();
+      });
+      doneBtn.addEventListener("click", close);
+      document.addEventListener("click", (e) => {
+        if (!root.contains(e.target)) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
+      });
+      updateText();
+    }
   });
   </script>
 
@@ -414,7 +540,7 @@
           </div>
         </div>
 
-        <div class="card" id="quote">
+        <div class="card">
           <h3 style="margin-top:0">Contact</h3>
           <p class="muted" style="margin:0 0 10px">
             <strong>Phone:</strong> 516-398-8892<br>
@@ -452,5 +578,3 @@
   <script src="script.js" defer></script>
 </body>
 </html>
-
-
