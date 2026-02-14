@@ -6,16 +6,6 @@
   <title>Sell Silver | Prime Gold</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .silver-hero {
-      background: linear-gradient(135deg, rgba(230,230,230,0.85) 60%, rgba(200,171,84,0.12) 100%), url('assets/silver-wwb1.webp') center/cover no-repeat;
-      padding: 40px 0 24px;
-      text-align: center;
-      min-height: 320px;
-      position: relative;
-    }
-    .silver-hero h1 { color: #c8ab54; font-size: 2.8em; margin-bottom: 10px; }
-    .silver-hero p { font-size: 1.1em; color: #333; margin-bottom: 0; }
-    /* .silver-images removed */
     .faq-list { max-width: 700px; margin: 36px auto; font-size: 0.98em; }
     .faq-list details { margin-bottom: 16px; }
     .faq-list summary { font-weight: 700; font-size: 1em; cursor: pointer; }
@@ -23,10 +13,100 @@
     .other-questions { margin-top: 32px; text-align: left; }
     .back-link { display:inline-block; margin:18px 0 0 18px; color:#c8ab54; font-weight:700; text-decoration:none; }
     .back-link:hover { text-decoration:underline; }
+
+    /* ===== Stable, in-flow multiselect (no layout break) ===== */
+    .pg-ms-label { margin-top: 10px; display:block; font-weight:700; }
+
+    .pg-ms {
+      position: relative;
+      margin-top: 8px;
+      width: 100%;
+      z-index: 3;
+    }
+
+    .pg-ms-btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(18,18,24,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight:800;
+      color:#121218;
+      transition:.15s ease;
+    }
+    .pg-ms-btn:hover{ transform: translateY(-1px); background: rgba(18,18,24,.02); }
+    .pg-ms-btn-text--placeholder { color: rgba(18,18,24,.58); font-weight:700; }
+
+    .pg-ms-panel{
+      margin-top:8px;
+      background:#fff;
+      border:1px solid rgba(18,18,24,.12);
+      border-radius:16px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+      padding:10px;
+      display:none;
+      max-height: 240px;
+      overflow: auto;
+    }
+    .pg-ms-panel.is-open{ display:block; }
+
+    .pg-ms-option{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 10px;
+      border-radius:14px;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+    .pg-ms-option:hover{ background: rgba(18,18,24,.03); }
+    .pg-ms-option input{
+      width:18px; height:18px;
+      accent-color:#c8ab54;
+      cursor:pointer;
+    }
+    .pg-ms-option span{ font-weight:800; }
+
+    .pg-ms-actions{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 6px 2px;
+      border-top:1px solid rgba(18,18,24,.10);
+      margin-top:6px;
+    }
+    .pg-ms-mini{
+      border:1px solid rgba(18,18,24,.12);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .pg-ms-mini:hover{ background: rgba(18,18,24,.03); }
+
+    .pg-ms-hint{
+      margin:8px 0 0;
+      font-size:12px;
+      color: rgba(18,18,24,.65);
+    }
+
+    .form-note{
+      font-size: 12px;
+      margin-top: 10px;
+      color: rgba(18,18,24,.65);
+    }
   </style>
 </head>
 <body>
-  <!-- Topbar + Header (same as main site) -->
+  <!-- Topbar + Header -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-inner">
@@ -69,7 +149,7 @@
 
   <a class="back-link" href="index.html">&larr; Back to Home</a>
 
-  <!-- New hero with estimate panel -->
+  <!-- Hero + Estimate -->
   <section class="sell-hero sell-hero-grid container">
     <div>
       <div class="hero-pill">Free Appraisal • Instant Payout</div>
@@ -95,35 +175,77 @@
           <div class="buy-body"><h2>Scrap Silver</h2><p class="buy-note">Broken jewelry, flatware, and mismatched items.</p></div>
         </div>
       </div>
-
-
     </div>
 
-    <aside class="estimate-card">
+    <aside class="estimate-card" id="quote">
       <h3>Get A Free Estimate Today</h3>
-      <form>
-        <label>First Name</label>
-        <input type="text" name="first">
-        <label>Last Name</label>
-        <input type="text" name="last">
-        <label>Email</label>
-        <input type="email" name="email">
-        <label>Phone Number</label>
-        <input type="tel" name="phone">
-        <label>What type of silver are you looking to sell?</label>
-        <select multiple size="4">
-          <option>Silver Jewelry</option>
-          <option>Silver Coins</option>
-          <option>Silver Bars</option>
-          <option>Sterling Flatware</option>
-          <option>Scrap Silver</option>
-          <option>Other</option>
-        </select>
-        <div class="estimate-actions"><button class="btn btn-gold" type="button">Request Estimate</button></div>
-      </form>
-      <p class="muted" style="font-size:12px; margin-top:10px;">We'll only use this to contact you.</p>
-    </aside>
+      <!-- ✅ FormSubmit integration -->
+      <form action="https://formsubmit.co/a088c95dcf41e598246d347cc4e9cef8" method="POST">
+        <!-- FormSubmit Settings -->
+        <input type="hidden" name="_subject" value="New Estimate Request - Sell Silver (Prime Gold)">
+        <input type="hidden" name="_template" value="table">
+        <!-- ✅ no bot/captcha -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="thank-you.html">
 
+        <!-- Extra metadata -->
+        <input type="hidden" name="Page" value="Sell-Silver.html">
+
+
+        <label>First Name</label>
+        <input type="text" name="First Name" required>
+
+        <label>Last Name</label>
+        <input type="text" name="Last Name" required>
+
+        <label>Email</label>
+        <input type="email" name="Email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="Phone" required>
+
+        <label class="pg-ms-label" for="pgMsBtn">What items are you looking to sell?</label>
+
+        <div class="pg-ms" id="pgMs">
+          <button class="pg-ms-btn" id="pgMsBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="pgMsText" class="pg-ms-btn-text--placeholder">Select one or more…</span>
+            <span aria-hidden="true">▾</span>
+          </button>
+
+          <div class="pg-ms-panel" id="pgMsPanel" role="listbox" aria-label="Items to sell">
+            <label class="pg-ms-option">
+              <input type="checkbox" name="Items[]" value="Gold">
+              <span>Gold</span>
+            </label>
+            <label class="pg-ms-option">
+              <input type="checkbox" name="Items[]" value="Silver">
+              <span>Silver</span>
+            </label>
+            <label class="pg-ms-option">
+              <input type="checkbox" name="Items[]" value="Coins">
+              <span>Coins</span>
+            </label>
+            <label class="pg-ms-option">
+              <input type="checkbox" name="Items[]" value="Watches">
+              <span>Watches</span>
+            </label>
+
+            <div class="pg-ms-actions">
+              <button class="pg-ms-mini" type="button" id="pgMsClear">Clear</button>
+              <button class="pg-ms-mini" type="button" id="pgMsDone">Done</button>
+            </div>
+          </div>
+
+          <p class="pg-ms-hint">You can choose more than one option.</p>
+        </div>
+
+        <div class="estimate-actions">
+          <button class="btn btn-gold" type="submit">Request Estimate</button>
+        </div>
+
+        <p class="form-note">We’ll only use this to contact you.</p>
+      </form>
+    </aside>
   </section>
 
   <section class="we-also-buy">
@@ -167,7 +289,6 @@
     </section>
   </main>
 
-  <!-- Footer and Mobile Menu (copied from index for consistency) -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -182,14 +303,16 @@
           <p class="muted" style="margin:0; max-width:72ch">Prime Gold buys gold, silver, coins, diamonds, and luxury watches. We focus on transparent evaluations and fast payouts.</p>
 
           <div class="footer-links" aria-label="Footer links">
-            <a href="#how">How It Works</a>
-            <a href="#what-we-buy-slider">What We Buy</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#faq">FAQ</a>
+            <a href="Sell-Gold.html">Sell Gold</a>
+            <a href="Sell-Silver.html">Sell Silver</a>
+            <a href="Sell-Coins.html">Sell Coins</a>
+            <a href="Sell-Diamonds.html">Sell Diamonds</a>
+            <a href="Sell-Watches.html">Sell Watches</a>
+            <a href="Contact-Us.html">Contact Us</a>
           </div>
         </div>
 
-        <div class="card" id="quote">
+        <div class="card">
           <h3 style="margin-top:0">Contact</h3>
           <p class="muted" style="margin:0 0 10px"><strong>Phone:</strong> 516-398-8892<br><strong>City:</strong> Syosset, NY<br><strong>Hours:</strong> Mon–Sat 10AM–6PM • Sun Closed</p>
           <div style="display:flex; gap:10px; flex-wrap:wrap">
@@ -208,13 +331,77 @@
         <div style="font-weight:900">Menu</div>
         <button class="btn" id="closeMenu">Close</button>
       </div>
-      <a href="#how" class="mnav">How It Works</a>
-      <a href="#what-we-buy-slider" class="mnav">What We Buy</a>
-      <a href="#reviews" class="mnav">Reviews</a>
-      <a href="#faq" class="mnav">FAQ</a>
+      <a href="Sell-Gold.html" class="mnav">Sell Gold</a>
+      <a href="Sell-Silver.html" class="mnav">Sell Silver</a>
+      <a href="Sell-Coins.html" class="mnav">Sell Coins</a>
+      <a href="Sell-Diamonds.html" class="mnav">Sell Diamonds</a>
+      <a href="Sell-Watches.html" class="mnav">Sell Watches</a>
+      <a href="Contact-Us.html" class="mnav">Contact Us</a>
       <a href="tel:+15163988892" class="mnav">Call Now</a>
     </div>
   </div>
+
+  <!-- Dropdown JS -->
+  <script>
+    (function(){
+      const root = document.getElementById("pgMs");
+      if(!root) return;
+
+      const btn = document.getElementById("pgMsBtn");
+      const panel = document.getElementById("pgMsPanel");
+      const text = document.getElementById("pgMsText");
+      const clearBtn = document.getElementById("pgMsClear");
+      const doneBtn = document.getElementById("pgMsDone");
+      const checks = Array.from(panel.querySelectorAll('input[type="checkbox"][name="Items[]"]'));
+
+      function selectedValues(){
+        return checks.filter(c => c.checked).map(c => c.value);
+      }
+
+      function updateText(){
+        const vals = selectedValues();
+        if(vals.length === 0){
+          text.textContent = "Select one or more…";
+          text.classList.add("pg-ms-btn-text--placeholder");
+        } else {
+          text.textContent = vals.join(", ");
+          text.classList.remove("pg-ms-btn-text--placeholder");
+        }
+      }
+
+      function open(){
+        panel.classList.add("is-open");
+        btn.setAttribute("aria-expanded","true");
+      }
+      function close(){
+        panel.classList.remove("is-open");
+        btn.setAttribute("aria-expanded","false");
+      }
+      function toggle(){
+        panel.classList.contains("is-open") ? close() : open();
+      }
+
+      btn.addEventListener("click", toggle);
+      checks.forEach(c => c.addEventListener("change", updateText));
+
+      clearBtn.addEventListener("click", () => {
+        checks.forEach(c => c.checked = false);
+        updateText();
+      });
+
+      doneBtn.addEventListener("click", close);
+
+      document.addEventListener("click", (e) => {
+        if (!root.contains(e.target)) close();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") close();
+      });
+
+      updateText();
+    })();
+  </script>
 
   <script src="script.js" defer></script>
 </body>
