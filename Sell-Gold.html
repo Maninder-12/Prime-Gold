@@ -9,10 +9,18 @@
 
   <!-- Page-specific styles -->
   <style>
+    body{
+      background:
+        radial-gradient(1200px 640px at 10% -10%, rgba(200,171,84,.22), transparent 62%),
+        radial-gradient(900px 520px at 95% 8%, rgba(18,18,24,.08), transparent 58%),
+        linear-gradient(180deg, #fbfaf6 0%, #ffffff 34%);
+    }
     .sell-hero{
       padding:54px 0 28px;
-      background: linear-gradient(135deg, rgba(200,171,84,.15), rgba(255,255,255,0));
-      border-bottom:1px solid var(--soft);
+      background:
+        linear-gradient(145deg, rgba(200,171,84,.18), rgba(255,255,255,.8) 45%, rgba(255,255,255,.96)),
+        radial-gradient(700px 260px at 82% -8%, rgba(200,171,84,.16), transparent 72%);
+      border-bottom:1px solid rgba(18,18,24,.08);
     }
     .sell-hero-grid{
       display:grid;
@@ -27,19 +35,22 @@
       border-radius:999px;
       font-weight:900;
       font-size:12px;
-      border:1px solid rgba(200,171,84,.4);
-      background:rgba(200,171,84,.12);
+      letter-spacing:.3px;
+      border:1px solid rgba(200,171,84,.5);
+      background:linear-gradient(135deg, rgba(200,171,84,.2), rgba(200,171,84,.08));
+      box-shadow:0 8px 20px rgba(200,171,84,.18);
     }
     .sell-hero h1{
       margin:12px 0 6px;
       font-size:clamp(36px,4vw,56px);
     }
     .estimate-card{
-      background:#fff;
-      border:1px solid var(--soft);
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+      border:1px solid rgba(18,18,24,.1);
       border-radius:var(--radius2);
       padding:18px;
-      box-shadow:var(--shadow);
+      box-shadow:0 22px 54px rgba(0,0,0,.11);
+      backdrop-filter: blur(3px);
     }
     .form-grid{
       display:grid;
@@ -63,16 +74,23 @@
     }
     @media(max-width:900px){.buy-grid{grid-template-columns:1fr}}
     .buy-card{
-      border:1px solid var(--soft);
+      border:1px solid rgba(18,18,24,.09);
       border-radius:var(--radius2);
       overflow:hidden;
-      background:#fff;
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.93));
       display:flex;
       flex-direction:column;
+      box-shadow:0 16px 34px rgba(0,0,0,.08);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .buy-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 22px 44px rgba(0,0,0,.12);
     }
     .buy-media{
       height:220px;
       overflow:hidden;
+      background:linear-gradient(180deg, rgba(200,171,84,.1), rgba(255,255,255,.75));
     }
     .buy-media img{
       width:100%;
@@ -90,7 +108,7 @@
     @media(max-width:520px){.also-buy-grid{grid-template-columns:1fr}}
     .also-buy-link{
       padding:16px;
-      border:1px solid var(--soft);
+      border:1px solid rgba(18,18,24,.1);
       border-radius:16px;
       text-decoration:none;
       font-weight:900;
@@ -98,6 +116,13 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+      transition:transform .15s ease, background .15s ease;
+    }
+    .also-buy-link:hover{
+      transform:translateY(-1px);
+      background:linear-gradient(180deg, rgba(200,171,84,.14), rgba(255,255,255,.92));
     }
     .form-success{
       display:none;
@@ -340,6 +365,46 @@
   </div>
 </section>
 
+<section class="sell-catalog">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Gold Items We Buy</h2>
+        <p class="section-desc">We purchase a broad range of gold items, from everyday jewelry to investment-grade bullion.</p>
+      </div>
+    </div>
+    <div class="catalog-grid">
+      <article class="catalog-card">
+        <h3>Gold Jewelry</h3>
+        <ul>
+          <li>10k, 14k, 18k, and 22k jewelry</li>
+          <li>Chains, rings, bracelets, earrings</li>
+          <li>Broken or mismatched gold pieces</li>
+          <li>Italian and designer gold jewelry</li>
+        </ul>
+      </article>
+      <article class="catalog-card">
+        <h3>Coins & Bullion</h3>
+        <ul>
+          <li>American Eagles and Buffalos</li>
+          <li>Krugerrands and Maple Leafs</li>
+          <li>Gold bars and wafers</li>
+          <li>Fractional bullion products</li>
+        </ul>
+      </article>
+      <article class="catalog-card">
+        <h3>Estate & Specialty Gold</h3>
+        <ul>
+          <li>Estate and inherited gold collections</li>
+          <li>Dental gold and scrap gold lots</li>
+          <li>Vintage gold watches and accessories</li>
+          <li>Class rings and commemorative pieces</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- WE ALSO BUY -->
 <section>
   <div class="container">
@@ -353,7 +418,79 @@
   </div>
 </section>
 
+<section class="faq-list container beige-bg">
+  <div class="section-head">
+    <div>
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-desc">Quick answers to common questions.</p>
+    </div>
+  </div>
+  <details open>
+    <summary>How much will you pay me for my gold?</summary>
+    <p>We pay based on current market rates, purity, and total weight. You’ll receive a clear, competitive offer with no pressure.</p>
+  </details>
+  <details>
+    <summary>How do you test and verify gold purity?</summary>
+    <p>We use trusted industry methods including acid testing and electronic analyzers to confirm karat and authenticity accurately.</p>
+  </details>
+  <details>
+    <summary>Do you buy broken or mismatched gold jewelry?</summary>
+    <p>Yes. We buy broken chains, single earrings, damaged items, and scrap gold in any condition.</p>
+  </details>
+  <details>
+    <summary>Do you buy all types of gold items?</summary>
+    <p>Yes. We buy gold jewelry, coins, bars, bullion, dental gold, estate pieces, and other gold valuables.</p>
+  </details>
+  <details>
+    <summary>How and when do I get paid?</summary>
+    <p>You get paid immediately after you accept the offer, by cash, check, or bank transfer based on your preference.</p>
+  </details>
+  <details class="other-questions">
+    <summary>Any other questions?</summary>
+    <p>If you have a different question, please call <a href="tel:+15163988892">516-398-8892</a> or <a href="mailto:info@primegold.com">email us</a> for a quick answer.</p>
+  </details>
+</section>
+
 </main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <span class="logo" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">Prime Gold</div>
+            <div class="brand-sub">Top payouts • Clear offers • Fast service</div>
+          </div>
+        </div>
+        <p class="muted" style="margin:0; max-width:72ch">Prime Gold buys gold, silver, coins, diamonds, and luxury watches. We focus on transparent evaluations and fast payouts.</p>
+
+        <div class="footer-links" aria-label="Footer links">
+          <a href="Sell-Gold.html">Sell Gold</a>
+          <a href="Sell-Silver.html">Sell Silver</a>
+          <a href="Sell-Coins.html">Sell Coins</a>
+          <a href="Sell-Diamonds.html">Sell Diamonds</a>
+          <a href="Sell-Watches.html">Sell Watches</a>
+          <a href="Contact-Us.html">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0">Contact</h3>
+        <p class="muted" style="margin:0 0 10px"><strong>Phone:</strong> 516-398-8892<br><strong>City:</strong> Syosset, NY<br><strong>Hours:</strong> Mon–Sat 10AM–6PM • Sun Closed</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-gold" href="tel:+15163988892">Call</a>
+          <a class="btn" href="sms:+15163988892">Text</a>
+        </div>
+        <p style="margin:12px 0 0">
+          <a class="btn" href="https://www.google.com/maps?q=Prime%20Gold%20Syosset%20NY" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        </p>
+        <p class="muted" style="margin:12px 0 0; font-size:12px">© <span id="year"></span> Prime Gold. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">

@@ -26,6 +26,63 @@ document.addEventListener("DOMContentLoaded", () => {
   menu?.addEventListener("click", (e) => { if(e.target === menu) closeMenu(); });
   document.querySelectorAll(".mnav").forEach(a => a.addEventListener("click", closeMenu));
 
+  // Reading progress indicator
+  const progress = document.createElement("div");
+  progress.className = "scroll-progress";
+  progress.innerHTML = "<span></span>";
+  document.body.appendChild(progress);
+  const progressFill = progress.querySelector("span");
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressFill.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+  }
+  updateProgress();
+  window.addEventListener("scroll", updateProgress, { passive: true });
+
+  // Floating concierge quick actions
+  const concierge = document.createElement("div");
+  concierge.className = "floating-concierge";
+  concierge.innerHTML = `
+    <a class="primary" href="tel:+15163988892">Call Concierge</a>
+    <a href="sms:+15163988892">Text Photos</a>
+  `;
+  document.body.appendChild(concierge);
+
+  // Scroll title reveal animation
+  const animatedTitles = Array.from(document.querySelectorAll(
+    "main h1:not(.prime):not(.gold), .section-title, .sell-hero h1, .we-also-buy h3, .faq-list summary"
+  ));
+  animatedTitles.forEach((el, i) => {
+    el.classList.add("slide-in-title");
+    el.setAttribute("data-slide-dir", i % 2 === 0 ? "left" : "right");
+  });
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        titleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+  animatedTitles.forEach((el) => titleObserver.observe(el));
+
+  // Reveal cards and rich content blocks
+  const revealTargets = Array.from(document.querySelectorAll(
+    ".card, .buy-card, .catalog-card, .trust-card, .stat-card, .estimate-card, details, .wwb-card, .quote-image-card"
+  ));
+  revealTargets.forEach(el => el.classList.add("reveal-up"));
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-in");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -30px 0px" });
+  revealTargets.forEach(el => revealObserver.observe(el));
+
   // ===== What We Buy Slider (AUTO + LOOP, MOVES BY 2) =====
   const track = document.getElementById("wwbTrack");
   const prevBtn = document.getElementById("wwbPrev");
