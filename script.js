@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const concierge = document.createElement("div");
   concierge.className = "floating-concierge";
   concierge.innerHTML = `
-    <a class="primary" href="tel:+15163988892">CALL EXPERT</a>
-    <a href="sms:+15163988892">Text Photos</a>
+    <a class="primary" href="tel:+15164604679">CALL EXPERT</a>
+    <a href="sms:+15164604679">Text Photos</a>
   `;
   document.body.appendChild(concierge);
 
