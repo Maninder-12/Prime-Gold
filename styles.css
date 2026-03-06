@@ -83,17 +83,10 @@ header{padding:18px 0 0}
   gap:14px; padding:14px 0;
 }
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
-.logo{
-  width:40px; height:40px; border-radius:12px;
-  background: linear-gradient(135deg, rgba(200,171,84,.95), rgba(160,125,44,.95));
-  box-shadow: 0 18px 45px rgba(200,171,84,.18);
-  position:relative;
-}
-.logo:after{
-  content:"";
-  position:absolute; inset:10px;
-  border-radius:10px;
-  border:2px solid rgba(0,0,0,.22);
+.site-logo {
+  height: 122px;
+  width: auto;
+  display: block;
 }
 .brand-name{font-weight:900; letter-spacing:.2px}
 .brand-sub{font-size:12px; color:var(--muted-ink); margin-top:2px}
@@ -1265,17 +1258,6 @@ header{
   min-height: 74px;
   padding: 10px 0 !important;
 }
-.logo{
-  width:44px !important;
-  height:44px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #d8ba76, #b18a3f 70%, #8a6728) !important;
-}
-.logo:after{
-  inset:11px !important;
-  border-radius: 50% !important;
-  border:2px solid rgba(24,20,12,.45) !important;
-}
 .brand-sub{
   text-transform: uppercase;
   letter-spacing: .18em !important;
@@ -1488,17 +1470,6 @@ header{
 .nav{
   min-height: 74px;
   padding: 10px 0 !important;
-}
-.logo{
-  width: 42px !important;
-  height: 42px !important;
-  border-radius: 14px !important;
-  background: linear-gradient(135deg, #e5c37e, #c59a49 68%, #9f732c) !important;
-}
-.logo:after{
-  inset: 10px !important;
-  border: 2px solid rgba(28, 23, 13, .38) !important;
-  border-radius: 10px !important;
 }
 .brand-sub{
   color: #7a6a4b !important;
@@ -2050,4 +2021,43 @@ section.sell-catalog.container .section-head{
   background: rgba(200,171,84,.12) !important;
   border-color: rgba(200,171,84,.35) !important;
   color: #2b313c !important;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding-top: 0;
+  }
+
+  header .nav {
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-left: 68px;
+    padding-right: 68px;
+  }
+
+  header .nav .brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header .nav .site-logo {
+    height: 90px;
+    width: auto;
+  }
+
+  header .nav .hamburger {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
 }
