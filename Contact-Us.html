@@ -85,7 +85,14 @@
 
         <aside class="contact-card anim-fade-up" aria-label="Contact form">
           <h3>Send us a message</h3>
-          <form id="contactForm">
+          <form id="contactForm" action="https://formsubmit.co/a088c95dcf41e598246d347cc4e9cef8" method="POST">
+            <input type="hidden" name="_subject" value="New Estimate Request - Prime Gold">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://www.primegoldbuyers.com/thank-you.html">
+            <input type="hidden" name="_replyto" value="email">
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="Page" value="Contact-Us.html">
             <label for="name">Full name</label>
             <input id="name" name="name" type="text" required placeholder="Your full name">
 
@@ -160,19 +167,6 @@
       <a href="tel:+15164604679" class="mnav">Call Now</a>
     </div>
   </div>
-
-  <script>
-  // Simple client-side handler that emulates form submission and shows a success message
-  document.getElementById('contactForm')?.addEventListener('submit', function(e){
-    e.preventDefault();
-    const status = document.getElementById('contactStatus');
-    status.style.display = 'block';
-    status.textContent = 'Thanks — we received your message and will be in touch shortly.';
-    // basic clear
-    this.querySelectorAll('input, textarea').forEach(i => i.value = '');
-  });
-  </script>
-
-  <script src="script.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
